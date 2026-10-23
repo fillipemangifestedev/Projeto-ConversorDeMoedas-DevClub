@@ -32,15 +32,16 @@ div {
     margin-top: 20px;
 }
 
-h3 {
+label {
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
     color: rgba(119, 119, 119, 1);
 }
 
+select,
 input {
-    color: rgba(255, 255, 255, 1);
+    color: rgb(0, 0, 0);
     border: 1px solid rgba(187, 187, 187, 1);
     border-radius: 4px;
     width: 327px;
@@ -81,8 +82,37 @@ button:hover {
     height: 320px;
 }
 
+.moeda-original,
+.moeda-destino {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+
+}
+
+.flag {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+
+p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+}
+
 h2 {
     font-weight: 700;
     font-size: 20px;
     line-height: 18px;
+    width: 121px;
+    height: 18px;
+}
+
+.icone {
+    width: 35px;
+    height: 49.95px;
+    object-fit: contain;
 }
