@@ -15,6 +15,7 @@ body {
     min-height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 section {
@@ -22,14 +23,18 @@ section {
     width: 375px;
     height: 712px;
     border-radius: 20px;
-    position: relative;
     display: flex;
     flex-direction: column;
     padding: 20px;
+    gap: 20px;
 }
 
-div {
-    margin-top: 20px;
+.box-1,
+.box-2,
+.box-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 label {
@@ -51,10 +56,10 @@ input {
     font-size: 16px;
     line-height: 18px;
     padding-left: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
 }
 
 button {
-    margin-top: 20px;
     font-weight: 700px;
     font-size: 18px;
     line-height: 18px;
@@ -64,6 +69,7 @@ button {
     background: #016628;
     border-radius: 5px;
     cursor: pointer;
+    border: none;
 }
 
 button:hover {
@@ -76,10 +82,10 @@ button:hover {
     flex-direction: column;
     justify-content: space-around;
     width: 100%;
-    margin-top: 40px;
     border: 1px solid #016628;
     border-radius: 20px;
     height: 320px;
+    padding: 10px;
 }
 
 .moeda-original,
@@ -88,7 +94,6 @@ button:hover {
     flex-direction: column;
     gap: 5px;
     align-items: center;
-
 }
 
 .flag {
@@ -98,18 +103,20 @@ button:hover {
 }
 
 p {
-    font-weight: 400;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 16px;
     line-height: 18px;
+    color: #333;
 }
 
 h2 {
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 16px;
     line-height: 18px;
     width: 121px;
     height: 18px;
     border-bottom: 1px solid #016628;
+    color: #555;
 }
 
 .icone {
