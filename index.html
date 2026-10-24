@@ -15,21 +15,12 @@
     <main>
         <label for="moeda">Converter <b>de:</b></label>
 
-        <select class="moeda-base">
-            <option>-- Selecione uma moeda --</option>
-            <option value="real">R$ Real Brasileiro</option>
-            <option value="dolar">US$ Dólar Americano</option>
-            <option value="libra">£ Libra</option>
-            <option value="euro">€ Euro</option>
-            <option value="bitcoin">₿ Bitcoin</option>
-
-        </select>
+        <input class="moeda-base" placeholder="R$ Real Brasileiro" readonly>
 
         <label for="moeda">Converter <b>para:</b></label>
 
         <select class="moeda-destino">
             <option>-- Selecione uma moeda --</option>
-            <option value="real">R$ Real Brasileiro</option>
             <option value="dolar">US$ Dólar Americano</option>
             <option value="libra">£ Libra</option>
             <option value="euro">€ Euro</option>
@@ -39,15 +30,15 @@
 
         <label>Valor:</label>
 
-        <input class="currency" placeholder="Digite um valor">
+        <input class="input-currency" placeholder="Digite um valor">
 
         <button class="convert-button">Converter</button>
 
         <section>
             <div class="moeda-original">
-                <img src="./img/brasil 2.png" alt="Bandeira-do-Brasil" class="flag">
+                <img src="./img/brasil 2.png" alt="Bandeira-do-Brasil" id="flag" class="flag-base">
 
-                <p class="conversor">Real</p>
+                <p class="conversor" id="moeda-nome">Real</p>
 
                 <h2 class="valorParaConverter">R$ 4,97</h2>
 
@@ -56,9 +47,9 @@
             <img src="./img/Vector.png" alt="Icone">
 
             <div class="moeda-destino">
-                <img src="./img/estados-unidos (1) 1.png" alt="Bandeira-do-EUA" class="flag">
+                <img src="./img/estados-unidos (1) 1.png" alt="Bandeira-do-EUA" id="flag" class="flag-converor">
 
-                <p class="conversor">Dólar Americano</p>
+                <p class="conversor" id="moeda-nome-conversor">Dólar Americano</p>
 
                 <h2 class="valorConvertido">USD$ 1,00</h2>
 
