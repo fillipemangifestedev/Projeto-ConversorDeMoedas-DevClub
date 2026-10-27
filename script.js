@@ -1,145 +1,116 @@
 console.log("Js carregando")
 
-//convertButton
+//convertButton.
 const convertButton = document.querySelector(".convert-button")
 
-//currencySelect - Destino
+//currencySelect - Destino / Base - Select.
 const moedaDestino = document.querySelector(".moeda-destino")
-
-//curencySelect - Base
 const moedaBase = document.querySelector(".moeda-base")
 
-//convertValue - inputCurrency - REAL
+//input.
+const inputCurrency = document.querySelector(".input-currency")
+
+//currencyConverted - Section.
+const currencyValorParaConverter = document.querySelector(".valorParaConverter")
+const currencyValorConvertido = document.querySelector(".valorConvertido")
+
+//currencyName - Section.
+const moedaNomeConversor = document.getElementById("moeda-nome-conversor")
+const moedaNome = document.getElementById("moeda-nome")
+
+//currencyName - Section.
+const flagConversor = document.querySelector(".flag-converor")
+const flagBase = document.querySelector(".flag-base")
+
+//Valor das moedas.
+const valorMoedas = {
+    "real": 1,
+    "dolar": 5.34,
+    "euro": 5.95,
+    "libra": 7.11,
+    "bitcoin": 429.692
+}
+
+//Código das moedas.
+const infoMoedas = {
+    "real": { code: "BRL", locale: "pt-BR" },
+    "dolar": { code: "USD", locale: "es-US" },
+    "euro": { code: "EUR", locale: "de-DE" },
+    "libra": { code: "GBP", locale: "en-GB" },
+    "bitcoin": { code: "XBT", locale: "en-US" }
+}
+
+//Nomes e bandeiras.
+const infoNameFlag = {
+    "real": { name: "Real Brasileiro", flag: "./img/brasil 2.png" },
+    "dolar": { name: "Dólar Americano", flag: "./img/estados-unidos (1) 1.png" },
+    "euro": { name: "Euro", flag: "./img/Design sem nome 3.png" },
+    "libra": { name: "Libra", flag: "./img/libra 1.png" },
+    "bitcoin": { name: "Bitcoin", flag: "./img/bitcoin 1.png" }
+}
+
+//convertValue - inputCurrency - REAL.
 function convertValue() {
-    const inputCurrency = Number(document.querySelector(".input-currency").value)
-
-    const currencyValorParaConverter = document.querySelector(".valorParaConverter")
-
-    const currencyValorConvertido = document.querySelector(".valorConvertido")
+    const inputValue = Number(inputCurrency.value)
 
     const selectedCurrencyType = moedaDestino.value
 
     const selectedMoedaBase = moedaBase.value
 
-    console.log("moeda selecionada", selectedCurrencyType)
-
-    //dolarToday
-    const dolarToday = 5.34
-
-    //euroToday
-    const euroToday = 5.95
-
-    //libraToday
-    const libraToday = 7.11
-
-    //bitcoinToday
-    const bitcoinToday = 429.692
-
-    //realToday
-    const realToray = 1
-
-    if (selectedMoedaBase === "real") {
-        currencyValorParaConverter.innerHTML = new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        }).format(inputCurrency);
-    } else if (selectedMoedaBase === "dolar") {
-        currencyValorParaConverter.innerHTML = new Intl.NumberFormat("es-US", {
-            style: "currency",
-            currency: "USD"
-        }).format(inputCurrency);
-    } else if (selectedMoedaBase === "euro") {
-        currencyValorParaConverter.innerHTML = new Intl.NumberFormat("de-DE", {
-            style: "currency",
-            currency: "EUR"
-        }).format(inputCurrency);
-    } else if (selectedMoedaBase === "libra") {
-        currencyValorParaConverter.innerHTML = new Intl.NumberFormat("en-GB", {
-            style: "currency",
-            currency: "GBP"
-        }).format(inputCurrency);
-    } else if (selectedMoedaBase === "bitcoin") {
-        currencyValorParaConverter.innerHTML = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "XBT"
-        }).format(inputCurrency);
-    } else {
-        currencyValorParaConverter.innerHTML = "Selecione uma moeda."
+    if (isNaN(inputValue) || inputValue <= 0) {
+        currencyValorParaConverter.innerHTML = "Valor inválido";
+        currencyValorConvertido.innerHTML = "----------";
     }
 
-    if (selectedCurrencyType === "dolar") {
-        currencyValorConvertido.innerHTML = new Intl.NumberFormat("en-US", {
+    const baseInfo = infoMoedas[selectedMoedaBase]
+    const baseLocal = infoMoedas[selectedCurrencyType]
+
+    if (baseInfo) {
+        currencyValorParaConverter.innerHTML = new Intl.NumberFormat(baseInfo.locale, {
             style: "currency",
-            currency: "USD"
-        }).format(inputCurrency / dolarToday)
-    } else if (selectedCurrencyType === "euro") {
-        currencyValorConvertido.innerHTML = new Intl.NumberFormat("de-DE", {
-            style: "currency",
-            currency: "EUR"
-        }).format(inputCurrency / euroToday)
-    } else if (selectedCurrencyType === "libra") {
-        currencyValorConvertido.innerHTML = new Intl.NumberFormat("en-GB", {
-            style: "currency",
-            currency: "GBP"
-        }).format(inputCurrency / libraToday);
-    } else if (selectedCurrencyType === "bitcoin") {
-        currencyValorConvertido.innerHTML = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "XBT"
-        }).format(inputCurrency / bitcoinToday);
-    } else if (selectedCurrencyType === "real") {
-        currencyValorConvertido.innerHTML = new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        }).format(realToray / inputCurrency);
+            currency: baseInfo.code
+        }).format(inputValue);
     } else {
-        currencyValorConvertido.innerHTML = "Selecione uma moeda.";
+        currencyValorParaConverter.innerHTML = "ERRO!"
+    }
+
+    //Converte o valor para a moeda base - REAL.
+    const valueInBRL = inputValue * valorMoedas[selectedMoedaBase]
+
+    //Converte o valor para a moeda desejada.
+    const convertedValue = valueInBRL / valorMoedas[selectedCurrencyType]
+
+    if (baseLocal) {
+        currencyValorConvertido.innerHTML = new Intl.NumberFormat(baseLocal.locale, {
+            style: "currency",
+            currency: baseLocal.code
+        }).format(convertedValue);
+    } else {
+        currencyValorConvertido.innerHTML = "ERRO!"
     }
 }
 
 function currencyChange() {
-    const moedaNomeConversor = document.getElementById("moeda-nome-conversor")
-    const moedaNome = document.getElementById("moeda-nome")
-
-    const flagConversor = document.querySelector(".flag-converor")
-    const flagBase = document.querySelector(".flag-base")
-
     const selectedCurrencyType = moedaDestino.value
-
     const selectedMoedaBase = moedaBase.value
 
-    if (selectedMoedaBase === "real") {
-        moedaNome.innerHTML = "Real Brasileiro"
-        flagBase.src = "./img/brasil 2.png"
-    } else if (selectedMoedaBase === "dolar") {
-        moedaNome.innerHTML = "Dólar Americano"
-        flagBase.src = "./img/estados-unidos (1) 1.png"
-    } if (selectedMoedaBase === "euro") {
-        moedaNomeConversor.innerHTML = "Euro"
-        flagBase.src = "./img/Design sem nome 3.png"
-    } else if (selectedMoedaBase === "libra") {
-        moedaNomeConversor.innerHTML = "Libra"
-        flagBase.src = "./img/libra 1.png"
-    } else if (selectedMoedaBase === "bitcoin") {
-        moedaNomeConversor.innerHTML = "Bitcoin"
-        flagBase.src = "./img/bitcoin 1.png"
+    const baseNameFlag = infoNameFlag[selectedMoedaBase]
+    const destinoNameFlag = infoNameFlag[selectedCurrencyType]
+
+    if (baseNameFlag) {
+        moedaNome.innerHTML = baseNameFlag.name;
+        flagBase.src = baseNameFlag.flag;
+    } else {
+        moedaNome.innerHTML = "PAÍS DE ORIGEM";
+        flagBase.src = ""
     }
 
-    if (selectedCurrencyType === "dolar") {
-        moedaNomeConversor.innerHTML = "Dólar Americano"
-        flagConversor.src = "./img/estados-unidos (1) 1.png"
-    } else if (selectedCurrencyType === "euro") {
-        moedaNomeConversor.innerHTML = "Euro"
-        flagConversor.src = "./img/Design sem nome 3.png"
-    } else if (selectedCurrencyType === "libra") {
-        moedaNomeConversor.innerHTML = "Libra"
-        flagConversor.src = "./img/libra 1.png"
-    } else if (selectedCurrencyType === "bitcoin") {
-        moedaNomeConversor.innerHTML = "Bitcoin"
-        flagConversor.src = "./img/bitcoin 1.png"
-    } else if (selectedCurrencyType === "real") {
-        moedaNomeConversor.innerHTML = "Real Brasileiro"
-        flagConversor.src = "./img/brasil 2.png"
+    if (destinoNameFlag) {
+        moedaNomeConversor.innerHTML = destinoNameFlag.name;
+        flagConversor.src = destinoNameFlag.flag;
+    } else {
+        moedaNomeConversor.innerHTML = "PAÍS DESTNO";
+        flagConversor.src = ""
     }
 
     convertValue()
@@ -148,4 +119,6 @@ function currencyChange() {
 convertButton.addEventListener("click", convertValue)
 
 moedaDestino.addEventListener("change", currencyChange)
+
+moedaBase.addEventListener("change", currencyChange)
 
