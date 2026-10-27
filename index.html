@@ -15,17 +15,24 @@
     <main>
         <label for="moeda">Converter <b>de:</b></label>
 
-        <input class="moeda-base" placeholder="R$ Real Brasileiro" readonly>
+        <select class="moeda-base">
+            <option>-- Selecione uma moeda --</option>
+            <option value="bitcoin">₿ Bitcoin</option>
+            <option value="euro">€ Euro</option>
+            <option value="dolar">US$ Dólar Smericano</option>
+            <option value="libra">£ Libra</option>
+            <option value="real">R$ Real Brasileiro</option>
+        </select>
 
         <label for="moeda">Converter <b>para:</b></label>
 
         <select class="moeda-destino">
             <option>-- Selecione uma moeda --</option>
-            <option value="dolar">US$ Dólar Americano</option>
-            <option value="libra">£ Libra</option>
-            <option value="euro">€ Euro</option>
             <option value="bitcoin">₿ Bitcoin</option>
-
+            <option value="euro">€ Euro</option>
+            <option value="dolar">US$ Dólar Smericano</option>
+            <option value="libra">£ Libra</option>
+            <option value="real">R$ Real Brasileiro</option>
         </select>
 
         <label>Valor:</label>
@@ -38,7 +45,7 @@
             <div class="moeda-original">
                 <img src="./img/brasil 2.png" alt="Bandeira-do-Brasil" id="flag" class="flag-base">
 
-                <p class="conversor" id="moeda-nome">Real</p>
+                <p class="conversor" id="moeda-nome">Real Brasileiro</p>
 
                 <h2 class="valorParaConverter">R$ 4,97</h2>
 
